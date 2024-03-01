@@ -2,7 +2,6 @@
 // headers: {
 // "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxYjFiZDRjNTllYzAwMTk5MGQ3OWUiLCJpYXQiOjE3MDkyODk5MTgsImV4cCI6MTcxMDQ5OTUxOH0.Xetjs2pF9la9RUExay-929FxXJMdp812qWLuaQgmWwY"
 // }
-// }
 
 const form = document.getElementById("form");
 
@@ -42,6 +41,9 @@ window.onload = () => {
     btnDelete.classList.remove("d-none");
 
     // funzione per confermare l'eliminazione
+
+    const alertCont = document.getElementById("alert");
+
     btnDelete.onclick = () => {
       if (confirm("Sei sicuro di voler eliminare questo prodotto?")) {
         fetch(URL, {
@@ -51,8 +53,17 @@ window.onload = () => {
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWUxYjFiZDRjNTllYzAwMTk5MGQ3OWUiLCJpYXQiOjE3MDkyODk5MTgsImV4cCI6MTcxMDQ5OTUxOH0.Xetjs2pF9la9RUExay-929FxXJMdp812qWLuaQgmWwY",
             "Content-Type": "application/json", // === row di postman, serve per far capire al server che dato gli arriva
           },
-        }).then();
-        window.location.assign("../index.html");
+        })
+          .then(resp => resp.json())
+          .then(product => {
+            alertCont.remove();
+            alertCont.innerHTML = `<div class="alert alert-success" role="alert">
+            ${product.name} eliminato correttamente!
+          </div>`;
+          });
+        setTimeout(() => {
+          window.location.assign("../index.html");
+        }, 1000);
       }
     };
 
@@ -157,4 +168,6 @@ form.onsubmit = e => {
       console.log(objOffice);
     })
     .catch(err => console.log(err));
+
+  e.target.reset();
 };

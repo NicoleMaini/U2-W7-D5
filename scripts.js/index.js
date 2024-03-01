@@ -48,9 +48,13 @@ const createCard = array => {
     let divBtn = document.createElement("div");
     divBtn.classList.add("btn-group");
 
-    let buyBtn = document.createElement("btn-view");
-    buyBtn.classList.add("btn", "btn-m", "btn-outline-secondary");
-    buyBtn.innerText = "Buy";
+    let showMoreLink = document.createElement("a");
+    showMoreLink.href = `./info.html?id=${element._id}&img=${element.imageUrl}`;
+    console.log(element._id);
+
+    let showMoreBtn = document.createElement("btn-view");
+    showMoreBtn.classList.add("btn", "btn-m", "btn-info", "text-white");
+    showMoreBtn.innerText = "Scopri di più";
 
     let editBtn = document.createElement("btn-edit");
     editBtn.classList.add("btn", "btn-m", "btn-outline-secondary");
@@ -60,8 +64,9 @@ const createCard = array => {
     editLink.href = `./backoffice.html?id=${element._id}`;
     console.log(element._id);
 
+    showMoreLink.appendChild(showMoreBtn);
     editLink.appendChild(editBtn);
-    divBtn.append(buyBtn, editLink);
+    divBtn.append(showMoreLink, editLink);
     divBodyBtn.append(divBtn, brand, price);
     linkTitle.appendChild(title);
     divBody.append(linkTitle, description, divBodyBtn);

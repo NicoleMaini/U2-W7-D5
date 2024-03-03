@@ -13,32 +13,14 @@ function createProfile() {
 
   console.log(paramImg);
 
-  let container = document.getElementById("container-description");
-
-  let description = document.createElement("p");
-  description.classList.add("lead", "text-start");
-  description.innerText = paramDescription;
-
-  let brand = document.createElement("h3");
-  brand.classList.add("jumbotron-heading", "text-start");
+  let brand = document.querySelector("#container-description h4");
   brand.innerText = paramBrand;
 
-  let name = document.createElement("h1");
-  name.classList.add("jumbotron-heading");
+  let name = document.querySelector("#container-description h1");
   name.innerText = paramName;
 
-  let id = document.createElement("small");
-  id.classList.add("text-end", "d-block", "mt-4");
-  id.innerText = "ID: " + paramId;
-
-  container.append(brand, name, description, id);
+  let description = document.querySelector("#container-description p");
+  description.innerText = paramDescription;
 }
 
 createProfile();
-
-// function bgColor() {
-//   let body = document.querySelector("body");
-//   body.style = `background-color: #${paramColor};`;
-// }
-
-// bgColor();

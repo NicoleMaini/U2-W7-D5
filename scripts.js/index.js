@@ -1,9 +1,11 @@
+// 2) creo la funzione per creare le card
+
 const createCard = array => {
   array.forEach(element => {
     const gridCard = document.getElementById("grid-card");
 
     let col = document.createElement("div");
-    col.classList.add("col-md-4");
+    col.classList.add("col-md-6", "col-xl-4");
 
     let container = document.createElement("div");
     container.classList.add("card", "mb-4", "shadow-sm", "h-100");
@@ -100,24 +102,52 @@ fetch(URL, {
       return response.json();
     } else {
       if (response.status === 400) {
-        throw new Error("400 - Errore lato utente");
+        throw new Error(
+          error("400! Qualcosa è andato storto durante l'inserimento dei dati", "400 - Errore lato utente")
+        );
       }
       if (response.status === 404) {
-        throw new Error("404 - Dato non trovato");
+        throw new Error(error("404! Mi spiace il dato cercato non è disponibile", "404 - Dato non trovato"));
       }
       if (response.status === 500) {
-        throw new Error("500 - Errore lato server");
+        throw new Error(
+          error(
+            "500! Mi dispiace ma al momento il server non è raggiungibile. Riprova più tardi :)",
+            "500 - Errore lato server"
+          )
+        );
       }
 
-      throw new Error("Errore reperimento dati");
+      throw new Error(error("! I dati richiesti non sono al momento raggiungibili", "Errore reperimento dati"));
     }
   })
   .then(products => {
     console.log(products);
     createCard(products);
+
+    // mentre aspettiamo il caricamento delle card, mostriamo all'utente uno spinnere una falsa card
+    const spinner = document.getElementById("spinner");
+    spinner.classList.remove("spinner-border");
+    spinner.innerHTML = ` <img
+    height="35px"
+    src="https://cdn.accentuate.io/35414048907/1675780333416/BH_WS_USPs_candle_duration_200px_010822-(2).png?v=1675780333416"
+    alt=""
+  />`;
+    const placheolders = document.getElementById("placeholder-load");
+    placheolders.classList.add("d-none");
   });
 
-// btn
-
-// const btnFirst = document.getElementById("btn-first");
-// const btnSecond = document.getElementById("btn-second");
+function error(string, string2) {
+  const containerAllCard = document.getElementById("container-all-card");
+  const allertWrong = document.createElement("div");
+  allertWrong.innerHTML = `<div class="alert alert-danger d-flex align-items-center  w-50 mx-auto" style="margin-bottom: 3rem; " role="alert">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+</svg>
+      <div>
+      Error ${string}!
+      </div>
+      </div>`;
+  containerAllCard.appendChild(allertWrong);
+  console.log(string2);
+}

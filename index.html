@@ -12,6 +12,9 @@
       crossorigin="anonymous"
     />
     <style>
+      .bg-spinner-rose {
+        color: #743241 !important;
+      }
       .card {
         --bs-card-border-color: none;
         border-radius: 0;
@@ -23,7 +26,7 @@
         background-color: #fcf7f8;
       }
       .position-absolute {
-        top: 15rem;
+        top: 12rem;
       }
 
       .btn-outline-rose {
@@ -57,6 +60,11 @@
       .outline-rose:hover {
         background-color: white;
         color: #743241;
+      }
+
+      .bg-placheolder {
+        background-color: #f9d6e0 !important;
+        border-color: transparent !important;
       }
 
       .cp {
@@ -122,7 +130,8 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-rose">
       <div class="container">
-        <a class="navbar-brand" href="#">CRUDAZON</a>
+        <div class="spinner-border bg-spinner-rose me-3" role="status" id="spinner"></div>
+        <a class="navbar-brand" href="./index.html">CRUDAZON</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -164,6 +173,78 @@
       </section>
       <div class="album pt-5 bg-rose">
         <div class="container">
+          <div id="container-all-card"></div>
+          <div class="row" id="placeholder-load">
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm" aria-hidden="true">
+                <div stile="height: 18rem; overflow: hidden;">
+                  <img
+                    src="https://m.media-amazon.com/images/I/71Jv95Fh++S._AC_UF350,350_QL80_.jpg"
+                    class="bd-placeholder-img card-img-top object-fit-cover"
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                  </h5>
+                  <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-8"></span>
+                  </p>
+                  <a class="btn bg-placheolder disabled placeholder col-6" aria-disabled="true"></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm" aria-hidden="true">
+                <div stile="height: 18rem; overflow: hidden;">
+                  <img
+                    src="https://m.media-amazon.com/images/I/71Jv95Fh++S._AC_UF350,350_QL80_.jpg"
+                    class="bd-placeholder-img card-img-top object-fit-cover"
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                  </h5>
+                  <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-8"></span>
+                  </p>
+                  <a class="btn bg-placheolder disabled placeholder col-6" aria-disabled="true"></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm" aria-hidden="true">
+                <div stile="height: 18rem; overflow: hidden;">
+                  <img
+                    src="https://m.media-amazon.com/images/I/71Jv95Fh++S._AC_UF350,350_QL80_.jpg"
+                    class="bd-placeholder-img card-img-top object-fit-cover"
+                  />
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                  </h5>
+                  <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-8"></span>
+                  </p>
+                  <a class="btn bg-placheolder disabled placeholder col-6" aria-disabled="true"></a>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row g-3" id="grid-card">
             <!-- <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
@@ -205,6 +286,7 @@
         </p>
       </div>
     </main>
+
     <footer class="text-muted bg-body-rose">
       <div class="container">
         <p class="text-center">&copy CRUDAZON - PI 000000000000000</p>

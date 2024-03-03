@@ -22,6 +22,7 @@ const method = produtctId ? "PUT" : "POST";
 window.onload = () => {
   // recuperiamo un po' di id che ci servono
   const tilte = document.getElementById("title");
+  const logo = document.getElementById("logo");
   const btnDouble = document.getElementById("save-edit");
   const btnDelete = document.getElementById("delete-btn");
   const btnReset = document.getElementById("reset-btn");
@@ -36,7 +37,9 @@ window.onload = () => {
   // se l'indirizzo del nostro prodotto esiste allora:
   if (produtctId) {
     tilte.innerText = "Modifica caratteristiche del prodotto";
-
+    logo.onclick = () => {
+      returnHomePage("modifica");
+    };
     btnDouble.innerText = "Edit";
 
     // funzione per confermare la modifica
@@ -44,7 +47,8 @@ window.onload = () => {
       e.preventDefault();
 
       if (confirm("Sei sicuro di voler effettuare questi cambiamenti?")) {
-        const message = `<div class="alert alert-success d-flex align-items-center" style="margin-top: 6rem;" role="alert">
+        // in caso di true creiamo un messaggio di modifica effettuata con successo
+        const message = `<div class="alert alert-success d-flex align-items-center  w-50 mw-auto" style="margin-top: 6rem;" role="alert">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
       </svg>
@@ -55,8 +59,7 @@ window.onload = () => {
         allert(message);
         setTimeout(() => {
           window.location.assign("../index.html");
-        }, 700);
-      } else {
+        }, 1000);
       }
     };
 
@@ -81,7 +84,7 @@ window.onload = () => {
           .then(resp => resp.json())
           .then(product => {
             // una volta eliminato il prodotto, si rimuove il form e c'è la conferma del prodotto eliminato
-            const message = `<div class="alert alert-success d-flex align-items-center" style="margin-top: 6rem;" role="alert">
+            const message = `<div class="alert alert-success d-flex align-items-center  w-50 mw-auto" style="margin-top: 6rem;" role="alert">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
             </svg>
@@ -96,6 +99,17 @@ window.onload = () => {
         setTimeout(() => {
           window.location.assign("../index.html");
         }, 700);
+      } else {
+        // in caso di ripensamento ecco che esce un alert che conferma la NON avvenuta cancellazione del prodotto
+        const message = `<div class="alert alert-danger d-flex align-items-center  w-50 mw-auto" style="margin-top: 6rem;" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+      </svg>
+            <div>
+            Il prodotto: ${document.getElementById("name").value} non è stato eliminato!
+            </div>
+            </div>`;
+        allert(message, removeDisplayNone);
       }
     };
 
@@ -130,7 +144,7 @@ window.onload = () => {
         }
       })
       .then(product => {
-        // una volta ottenuto l'oggetto ecco che gli andiamo a riassegnarli le proprietà
+        // una volta ottenuto l'oggetto ecco che andiamo a riassegnarli le proprietà
         document.getElementById("name").value = product.name;
         document.getElementById("description").value = product.description;
         document.getElementById("brand").value = product.brand;
@@ -139,18 +153,18 @@ window.onload = () => {
       })
       .catch(err => console.log(err));
   } else {
+    // altrimenti la pagina si presenterà come una semplice pagina per l'inserimento del prodotto
     tilte.innerText = "Inserisci qui le caratteristiche del prodotto";
     btnDouble.innerText = "Save";
 
     // funzione per il ritorno in home
     btnDelete.onclick = () => {
-      window.location.assign("../index.html");
+      returnHomePage("inserisci");
     };
   }
 };
 
-// creaiamo l'oggetto che ci verra dato dagli imput della pagina back office
-
+//1) creaiamo l'oggetto che ci verra dato dagli input della pagina back office
 form.onsubmit = e => {
   console.log(e);
   e.preventDefault();
@@ -202,7 +216,7 @@ form.onsubmit = e => {
       console.log(objOffice);
     })
     .catch(err => console.log(err));
-  const message = `<div class="alert alert-success d-flex align-items-center" style="margin-top: 6rem;" role="alert">
+  const message = `<div class="alert alert-success d-flex align-items-center w-50 mw-auto" style="margin-top: 6rem;" role="alert">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
     </svg>
@@ -214,8 +228,7 @@ form.onsubmit = e => {
   e.target.reset();
 };
 
-// funzione feedback per notificare all'utente se il processo è andato a buon fine
-
+// funzione feedback per notificare all'utente se il processo è andato a buon/cattiva fine
 function allert(message, func) {
   const alertAppend = document.getElementById("append-alert");
   const alertContainer = document.getElementById("alert");
@@ -223,7 +236,7 @@ function allert(message, func) {
   alertAppend.innerHTML = message;
   setTimeout(() => {
     func(alertAppend, alertContainer);
-  }, 600);
+  }, 1000);
 }
 
 // funzione per ritornare nel form ad aggiungere articoli
@@ -231,4 +244,16 @@ function removeDisplayNone(append, container) {
   append.innerHTML = "";
   append.appendChild(container);
   container.classList.remove("d-none");
+}
+
+//funzione per chiedere conferma dell'abbandono della pagina
+function returnHomePage(str) {
+  if (
+    confirm(
+      `Sei sicuro di voler uscire dalla modalità ${str} per tornare in home? 
+Tutte le tue modifiche andranno perse.`
+    )
+  ) {
+    window.location.assign("../index.html");
+  }
 }

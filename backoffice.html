@@ -12,11 +12,14 @@
     />
 
     <style>
+      .bg-spinner-rose {
+        color: #743241 !important;
+      }
       .bg-body-rose {
         background-color: #fce9ed;
       }
       .btn-outline-rose {
-        background-color: #f6c4d0;
+        background-color: #ff9eb5;
         color: white;
         padding-inline: 0.4rem;
       }
@@ -33,7 +36,15 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-rose">
       <div class="container">
-        <a class="navbar-brand" href="#">CRUDAZON</a>
+        <div class="bg-spinner-rose me-3" role="status" id="spinner">
+          <img
+            height="35px"
+            src="https://cdn.accentuate.io/35414048907/1675780333416/BH_WS_USPs_candle_duration_200px_010822-(2).png?v=1675780333416"
+            alt=""
+          />
+        </div>
+
+        <a class="navbar-brand" href="./index.html" id="logo">CRUDAZON</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -96,7 +107,7 @@
               <label for="price" class="form-label">Prezzo</label>
               <input type="number" class="form-control" id="price" placeholder="--€" required />
             </div>
-            <div class="d-flex">
+            <div class="d-flex mb-4">
               <button type="submit" class="btn btn-success" id="save-edit"></button>
               <button type="button" class="btn btn-warning ms-3 me-auto" id="reset-btn">Reset</button>
               <button id="delete-btn" type="button" class="btn btn-outline-rose" style="line-height: 0">

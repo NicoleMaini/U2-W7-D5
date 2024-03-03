@@ -12,6 +12,57 @@
       crossorigin="anonymous"
     />
     <style>
+      .card {
+        --bs-card-border-color: none;
+        border-radius: 0;
+      }
+      .bg-body-rose {
+        background-color: #fce9ed;
+      }
+      .bg-rose {
+        background-color: #fcf7f8;
+      }
+      .position-absolute {
+        top: 15rem;
+      }
+
+      .btn-outline-rose {
+        background-color: #f6c4d0;
+        color: white;
+        padding: 0.2rem;
+        padding-left: 0.3rem;
+        padding-bottom: 0.3rem;
+      }
+      .btn-outline-rose:hover {
+        background-color: white;
+        color: #743241;
+      }
+      .show-more {
+        color: #fba2b7;
+        text-decoration: dashed #fba2b7;
+      }
+
+      .show-more:hover {
+        color: #743241;
+      }
+      .btn:first-child:active {
+        color: #743241;
+      }
+
+      .outline-rose {
+        background-color: #f6c4d0;
+        color: white;
+        padding: 0.2rem;
+      }
+      .outline-rose:hover {
+        background-color: white;
+        color: #743241;
+      }
+
+      .cp {
+        cursor: pointer;
+      }
+
       .jumbotron {
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -31,7 +82,7 @@
       }
 
       .jumbotron-heading {
-        font-weight: 300;
+        font-weight: 400;
       }
 
       .jumbotron .container {
@@ -69,7 +120,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-rose">
       <div class="container">
         <a class="navbar-brand" href="#">CRUDAZON</a>
         <button
@@ -96,15 +147,22 @@
       </div>
     </nav>
     <main role="main">
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Album API example</h1>
-          <p class="lead text-muted">
-            This page will dynamically load pictures from the web, and display them in a cool way!
-          </p>
+      <section class="text-center">
+        <div class="position-relative">
+          <img
+            class="w-100 object-fit-cover py-0"
+            src="https://www.ava-may.it/cdn/shop/files/CN_P_WS_Banner_HP_0.3_Soul_Set_desktop_1.jpg?v=1708676733"
+            alt=""
+            style="height: 60vh"
+          />
+
+          <div class="w-50 position-absolute">
+            <h1 class="jumbotron-heading">CRUDAZON Shop</h1>
+            <p class="lead text-muted">Scopri da noi tutte le tue fraganze preferite!</p>
+          </div>
         </div>
       </section>
-      <div class="album py-5 bg-light">
+      <div class="album pt-5 bg-rose">
         <div class="container">
           <div class="row g-3" id="grid-card">
             <!-- <div class="col-md-4">
@@ -128,13 +186,28 @@
             </div> -->
           </div>
         </div>
+        <p class="text-center p-5 m-0">
+          <a href="#"
+            ><svg
+              class="outline-rose rounded-1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              fill="currentColor"
+              class="bi bi-arrow-up-circle"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"
+              /></svg
+          ></a>
+        </p>
       </div>
     </main>
-    <footer class="text-muted">
+    <footer class="text-muted bg-body-rose">
       <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
+        <p class="text-center">&copy CRUDAZON - PI 000000000000000</p>
       </div>
     </footer>
     <script

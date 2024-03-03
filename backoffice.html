@@ -10,10 +10,28 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
+    <style>
+      .bg-body-rose {
+        background-color: #fce9ed;
+      }
+      .btn-outline-rose {
+        background-color: #f6c4d0;
+        color: white;
+        padding-inline: 0.4rem;
+      }
+      .btn-outline-rose:hover {
+        background-color: white;
+        color: #743241;
+      }
+      .btn:first-child:active {
+        color: #743241;
+      }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-rose">
       <div class="container">
         <a class="navbar-brand" href="#">CRUDAZON</a>
         <button
@@ -40,20 +58,14 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center" id="append-alert">
         <div class="col-md-10 col-lg-7" id="alert">
           <h1 class="mt-5 mb-3 display-5 d-inline-block">Backoffice</h1>
           <h6 class="d-inline-block" id="title"></h6>
           <form id="form">
             <div class="mb-3">
               <label for="name" class="form-label">Nome</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Inserisci il nome dell'appuntamento"
-                required
-              />
+              <input type="text" class="form-control" id="name" placeholder="Inserisci il nome del prodotto" required />
             </div>
             <div class="mb-3">
               <label for="description" class="form-label">Descrizione</label>
@@ -61,14 +73,20 @@
                 type="text"
                 class="form-control"
                 id="description"
-                placeholder="Inserisci una descrizione"
+                placeholder="Inserisci una descrizione del prodotto"
                 rows="6"
                 required
               ></textarea>
             </div>
             <div class="mb-3">
               <label for="brand" class="form-label">Brand</label>
-              <input type="text" class="form-control" id="brand" placeholder="Inserisci il modello" required />
+              <input
+                type="text"
+                class="form-control"
+                id="brand"
+                placeholder="Inserisci il modello del prodotto"
+                required
+              />
             </div>
             <div class="mb-3">
               <label for="imgObj" class="form-label">Inserisci l'indirizzo</label>
@@ -78,21 +96,11 @@
               <label for="price" class="form-label">Prezzo</label>
               <input type="number" class="form-control" id="price" placeholder="--€" required />
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex">
               <button type="submit" class="btn btn-success" id="save-edit"></button>
-              <button id="delete-btn" type="button" class="btn btn-danger d-none" style="line-height: 0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-trash3-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"
-                  />
-                </svg>
+              <button type="button" class="btn btn-warning ms-3 me-auto" id="reset-btn">Reset</button>
+              <button id="delete-btn" type="button" class="btn btn-outline-rose" style="line-height: 0">
+                Torna in home
               </button>
             </div>
           </form>

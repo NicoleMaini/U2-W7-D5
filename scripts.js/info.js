@@ -2,11 +2,10 @@ const params = new URLSearchParams(window.location.search);
 console.log(params);
 
 const paramId = params.get("id");
-const paramPhotographer = params.get("photographer");
-const paramTitle = params.get("title");
+const paramBrand = params.get("brand");
+const paramName = params.get("name");
 const paramImg = params.get("img");
-const paramColor = params.get("color");
-console.log(paramColor);
+const paramDescription = params.get("description");
 
 function createProfile() {
   let img = document.getElementById("img-profile");
@@ -16,19 +15,23 @@ function createProfile() {
 
   let container = document.getElementById("container-description");
 
-  let photographer = document.createElement("p");
-  photographer.classList.add("lead", "text-start");
-  photographer.innerText = paramPhotographer;
+  let description = document.createElement("p");
+  description.classList.add("lead", "text-start");
+  description.innerText = paramDescription;
 
-  let title = document.createElement("h1");
-  title.classList.add("jumbotron-heading");
-  title.innerText = paramTitle;
+  let brand = document.createElement("h3");
+  brand.classList.add("jumbotron-heading", "text-start");
+  brand.innerText = paramBrand;
+
+  let name = document.createElement("h1");
+  name.classList.add("jumbotron-heading");
+  name.innerText = paramName;
 
   let id = document.createElement("small");
   id.classList.add("text-end", "d-block", "mt-4");
   id.innerText = "ID: " + paramId;
 
-  container.append(photographer, title, id);
+  container.append(brand, name, description, id);
 }
 
 createProfile();

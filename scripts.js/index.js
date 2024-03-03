@@ -12,9 +12,10 @@ const createCard = array => {
     divImg.style = "height: 18rem; overflow: hidden;";
 
     let link = document.createElement("a");
+    link.href = `./info.html?id=${element._id}&img=${element.imageUrl}&brand=${element.brand}&name=${element.name}&price=${element.price}&description=${element.description}`;
 
     let img = document.createElement("img");
-    img.classList.add("card-img-top", "object-fit-contain");
+    img.classList.add("card-img-top", "object-fit-contain", "cp");
     img.style = "height: 100%; width: 100%";
 
     img.src = element.imageUrl;
@@ -25,40 +26,44 @@ const createCard = array => {
 
     let linkTitle = document.createElement("a");
     linkTitle.classList.add("card-title", "text-decoration-none");
+    linkTitle.href = `./info.html?id=${element._id}&img=${element.imageUrl}&brand=${element.brand}&name=${element.name}&price=${element.price}&description=${element.description}`;
 
     let title = document.createElement("h5");
     title.classList.add("card-title");
     title.innerText = element.name;
 
     let description = document.createElement("p");
-    description.classList.add("card-text", "my-auto");
+    description.classList.add("card-text", "mb-auto");
     description.innerText = element.description;
 
     let divBodyBtn = document.createElement("div");
     divBodyBtn.classList.add("d-flex", "justify-content-between", "align-items-center");
 
     let brand = document.createElement("small");
-    brand.classList.add("text-muted");
+    brand.classList.add("text-muted", "my-3");
     brand.innerText = element.brand;
 
     let price = document.createElement("small");
-    price.classList.add("text-muted");
+    price.classList.add("h4");
     price.innerText = element.price + "€";
 
     let divBtn = document.createElement("div");
     divBtn.classList.add("btn-group");
 
     let showMoreLink = document.createElement("a");
-    showMoreLink.href = `./info.html?id=${element._id}&img=${element.imageUrl}`;
+    showMoreLink.href = `./info.html?id=${element._id}&img=${element.imageUrl}&brand=${element.brand}&name=${element.name}&price=${element.price}&description=${element.description}`;
     console.log(element._id);
 
     let showMoreBtn = document.createElement("btn-view");
-    showMoreBtn.classList.add("btn", "btn-m", "btn-info", "text-white");
+    showMoreBtn.classList.add("btn", "show-more");
     showMoreBtn.innerText = "Scopri di più";
 
     let editBtn = document.createElement("btn-edit");
-    editBtn.classList.add("btn", "btn-m", "btn-outline-secondary");
-    editBtn.innerText = "Edit";
+    editBtn.classList.add("btn", "btn-outline-rose");
+    editBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+  </svg>`;
 
     let editLink = document.createElement("a");
     editLink.href = `./backoffice.html?id=${element._id}`;
@@ -67,9 +72,9 @@ const createCard = array => {
     showMoreLink.appendChild(showMoreBtn);
     editLink.appendChild(editBtn);
     divBtn.append(showMoreLink, editLink);
-    divBodyBtn.append(divBtn, brand, price);
+    divBodyBtn.append(price, divBtn);
     linkTitle.appendChild(title);
-    divBody.append(linkTitle, description, divBodyBtn);
+    divBody.append(brand, linkTitle, description, divBodyBtn);
     link.appendChild(img);
     divImg.appendChild(link);
     container.append(divImg, divBody);
@@ -78,7 +83,7 @@ const createCard = array => {
   });
 };
 
-// funzione fetch
+// 1) funzione fetch per mostrare in maniera dinamica i prodotti in hompage
 
 const URL = "https://striveschool-api.herokuapp.com/api/product/";
 
@@ -114,5 +119,5 @@ fetch(URL, {
 
 // btn
 
-const btnFirst = document.getElementById("btn-first");
-const btnSecond = document.getElementById("btn-second");
+// const btnFirst = document.getElementById("btn-first");
+// const btnSecond = document.getElementById("btn-second");

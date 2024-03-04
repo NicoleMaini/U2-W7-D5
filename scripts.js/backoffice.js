@@ -58,7 +58,7 @@ window.onload = () => {
     </div>`;
         allert(message);
         setTimeout(() => {
-          window.location.assign("../index.html");
+          window.location.assign("./index.html");
         }, 1000);
       }
     };
@@ -97,7 +97,7 @@ window.onload = () => {
 
         // dopodiché, con uno scarto di 1 secondo, l'utente viene riportato alla homepage
         setTimeout(() => {
-          window.location.assign("../index.html");
+          window.location.assign("./index.html");
         }, 700);
       } else {
         // in caso di ripensamento ecco che esce un alert che conferma la NON avvenuta cancellazione del prodotto
@@ -254,6 +254,6 @@ function returnHomePage(str) {
 Tutte le tue modifiche andranno perse.`
     )
   ) {
-    window.location.assign("../index.html");
+    window.location.assign("./index.html");
   }
 }
